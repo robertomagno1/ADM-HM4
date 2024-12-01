@@ -71,3 +71,33 @@ def save_to_csv(dataframe, path):
     Save the Spark DataFrame to a CSV file.
     """
     dataframe.coalesce(1).write.csv(path, header=True)
+
+def merge_datasets(tag_df, rating_df, movie_df, link_df, genome_scores_df, genome_tags_df):
+    # Rename ambiguous columns
+    tag_df = tag_df.withColumnRenamed("tag", "user_tag").withColumnRenamed("timestamp", "tag_timestamp")
+    rating_df = rating_df.withColumnRenamed("timestamp", "rating_timestamp")
+    genome_tags_df = genome_tags_df.withColumnRenamed("tag", "genome_tag")
+
+    # Merge ratings with movies
+    user_movie_df = movie_df.join(rating_df, "movieId", "inner")
+    
+    # Merge with tags
+    user_movie_df = user_movie_df.join(tag_df, ["userId", "movieId"], "left")
+    
+    # Merge genome scores with genome tags
+    genome_df = genome_scores_df.join(genome_tags_df, "tagId", "inner")
+    
+    # Merge genome data with main dataset
+    final_df = user_movie_df.join(genome_df, "movieId", "left")
+    
+    # Handle missing values
+    final_df = final_df.fillna({
+        "user_tag": "No Tag",
+        "genres": "Unknown",
+        "relevance": 0.0
+    })
+
+    # Add a date column for easier handling
+    final_df = final_df.withColumn("rating_date", to_date(col("rating_timestamp")))
+
+    return final_df
