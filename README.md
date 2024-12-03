@@ -1,9 +1,27 @@
-# Algorithmic Methods for Data Mining - Homework 4
+# Algorithmic Methods for Data Mining - Homework 4 🎥
 
-This is a Github repository created to submit the fourth Homework of the **Algorithmic Methods for Data Mining (ADM)** course for the MSc. in Data Science at the Sapienza University of Rome.
+This is a GitHub repository created to submit the fourth homework of the **Algorithmic Methods for Data Mining (ADM)** course for the MSc. in Data Science at the Sapienza University of Rome.
 
+---
+
+### Files and Directories
+```
+.
+├── Data/                 # Directory for datasets
+├── MyFunctions/          # Custom functions and utilities
+├── images/               # Directory containing images
+├── libs/                 # Python modules for specific tasks
+├── .gitignore            # Git ignore file for excluding unnecessary files
+├── README.md             # Project documentation
+├── recommendation.ipynb  # Notebook for the recommendation system implementation
+├── clustering.ipynb      # Notebook for clustering analysis and implementation
+├── algorithm.ipynb       # Notebook for the algorithmic problem
+├── commandline.sh        # Bash script for Command Line Question
+├── LICENSE               # MIT license for the repository
+└── main.ipynb            # Main notebook combining all tasks
+```
 --- 
-## What's inside this repository?
+
 
 1. `README.md`: A markdown file that explains the content of the repository.
 
@@ -29,10 +47,55 @@ This is a Github repository created to submit the fourth Homework of the **Algor
 
 7. `LICENSE`: A file containing an MIT permissive license.
 
+---
+
+## Project Overview
+
+This project explores movie recommendation systems and clustering techniques using the Kaggle [MovieLens 20M Dataset](https://www.kaggle.com/datasets/grouplens/movielens-20m-dataset?select=rating.csv). It is divided into three main components:
+1. **Recommendation System with Locality-Sensitive Hashing (LSH)**: Matches similar users and recommends movies based on their preferences.
+2. **Clustering Movies**: Groups movies into clusters based on engineered features for better analysis.
+3. **Algorithmic Question**: Solves a strategy-based game problem with an optimal solution.
+
+---
+
 ## Dataset
 
-In this homework we worked with Kaggle's predefined [MovieLens 20M Dataset](https://www.kaggle.com/datasets/grouplens/movielens-20m-dataset?select=rating.csv).
+The Kaggle [MovieLens 20M Dataset](https://www.kaggle.com/datasets/grouplens/movielens-20m-dataset?select=rating.csv) was used for this project. It includes user ratings and movie metadata, enabling robust feature engineering and analysis.
 
+---
+
+## Implementation Details
+
+### Recommendation System
+1. **MinHashing**: Implemented a custom MinHash function to create user signatures.
+2. **Locality-Sensitive Hashing (LSH)**: Clustered users into buckets and recommended movies based on similarity.
+3. **Recommendation Logic**: Delivered personalized recommendations using weighted scoring.
+
+### Clustering Movies
+1. **Feature Engineering**: Derived multiple features, including genres, average ratings, and user tags.
+2. **Clustering**:
+   - Implemented K-means and K-means++ algorithms.
+   - Used AI-recommended clustering methods for comparative analysis.
+3. **Evaluation**: Assessed clustering quality using metrics such as Silhouette Score and WCSS.
+
+### Algorithmic Problem
+1. Developed solutions for a sequence-based game problem using recursion and dynamic programming.
+2. Validated solutions with time complexity analysis and AI-assisted optimization.
+
+---
+
+## Results and Visualizations
+
+### Recommendation System
+- Successfully implemented a scalable recommendation engine.
+
+### Clustering Movies
+- Visualized movie groupings to uncover natural patterns.
+
+### Algorithmic Problem
+- Delivered an efficient solution validated through test cases.
+
+---
 ## Important Note
 
 If the Notebook doesn't load through Github please try all of these steps:
@@ -43,8 +106,8 @@ If the Notebook doesn't load through Github please try all of these steps:
 
 ---
 
-**Author:** Roberto Magno Mazzotta , xxx, xxx
+**Author:** Roberto Magno Mazzotta , Gabriel Pinos, xxx
 
-**Email:** magnomazzotta.2200470@studenti.uniroma1.it
+**Email:** magnomazzotta.2200470@studenti.uniroma1.it , pinos.1965035@atudenti.uniroma1.it
 
 *MSc. in Data Science, Sapienza University of Rome*
