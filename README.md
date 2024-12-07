@@ -110,22 +110,6 @@ If the Notebook doesn't load through Github please try all of these steps:
 
 **This is the animatet output for the bonus question 3 :**
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Example</title>
-</head>
-<body>
-    <h1>My Video</h1>
-    <video width="600" controls>
-        <source src="example_video.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</body>
-</html>
 [Watch the video](https://github.com/robertomagno1/ADM-HM4/blob/main/videoEX3(bonus)/Registrazione%20schermo%202024-12-07%20alle%2023.07.07.mov)
 **Author:** Roberto Magno Mazzotta , Gabriel Pinos, Ata Berk Firat
 
