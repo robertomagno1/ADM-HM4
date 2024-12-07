@@ -1,5 +1,6 @@
 import numpy as np
 from pyspark import SparkContext
+np.random.seed(271)
 
 
 class KMeansPlusPlus:

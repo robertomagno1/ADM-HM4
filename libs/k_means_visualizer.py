@@ -8,116 +8,120 @@ import plotly.express as px
 class KMeansVisualizer:
     def __init__(self, data, centroids_history, labels_history):
         """
-        Visualizza i risultati dell'algoritmo K-Means/K-Means++ con storia.
+        Visualizes the results of the K-Means++ algorithm with history.
 
         Args:
-        - data: Dataset originale (array NumPy, 2D)
-        - centroids_history: Lista delle posizioni dei centroidi per ogni iterazione
-        - labels_history: Lista delle assegnazioni di cluster per ogni iterazione
+        - data: Original dataset (2D NumPy array)
+        - centroids_history: List of centroid positions for each iteration
+        - labels_history: List of cluster assignments for each iteration
         """
+        # Initialize the data, centroids history, and labels history
         self.data = data
         self.centroids_history = centroids_history
         self.labels_history = labels_history
         self.iteration_data = []
         
-        # Prepara i dati per la visualizzazione
+        # Prepares data for visualization
         self._prepare_visualization_data()
     
     def _prepare_visualization_data(self):
         """
-        Prepara i dati per ogni iterazione per la visualizzazione interattiva.
+        Prepares the data for each iteration for interactive visualization.
         """
+        # Loop through each iteration of centroids and labels
         for iteration, (centroids, labels) in enumerate(zip(self.centroids_history, self.labels_history)):
+            # For each data point, store its feature values, cluster assignment, and centroid position
             for i, point in enumerate(self.data):
                 self.iteration_data.append({
-                    'Iteration': iteration + 1,
-                    'Feature1': point[0],
-                    'Feature2': point[1],
-                    'Cluster': labels[i],
-                    'Centroid_X': centroids[labels[i]][0],
-                    'Centroid_Y': centroids[labels[i]][1]
+                    'Iteration': iteration + 1,  # Iteration number
+                    'Feature1': point[0],         # Feature 1 (e.g., x-coordinate in PCA space)
+                    'Feature2': point[1],         # Feature 2 (e.g., y-coordinate in PCA space)
+                    'Cluster': labels[i],         # Cluster assignment
+                    'Centroid_X': centroids[labels[i]][0],  # X position of the assigned centroid
+                    'Centroid_Y': centroids[labels[i]][1]   # Y position of the assigned centroid
                 })
     
     def create_visualization(self):
         """
-        Crea la visualizzazione interattiva dell'evoluzione dei cluster.
+        Creates the interactive visualization of the evolution of the clusters.
         """
-        # Converti i dati in DataFrame
+        # Convert the iteration data into a DataFrame for easier handling
         df_iterations = pd.DataFrame(self.iteration_data)
         
-        # Colori per i cluster
+        # Define a color map for the clusters
         color_map = px.colors.qualitative.Plotly
         
-        # Prepara i frame per l'animazione
+        # Prepare frames for animation
         frames = []
         for iteration in df_iterations['Iteration'].unique():
+            # Filter the data for the current iteration
             df_frame = df_iterations[df_iterations['Iteration'] == iteration]
             
-            # Scatter dei punti
+            # Scatter plot of the data points
             scatter = go.Scatter(
                 x=df_frame['Feature1'], 
                 y=df_frame['Feature2'],
                 mode='markers',
                 marker=dict(
                     size=10, 
-                    color=[color_map[c % len(color_map)] for c in df_frame['Cluster']],
-                    line=dict(width=1, color='DarkSlateGrey')
+                    color=[color_map[c % len(color_map)] for c in df_frame['Cluster']],  # Color based on cluster
+                    line=dict(width=1, color='DarkSlateGrey')  # Add border to points
                 ),
-                name=f'Punti - Iterazione {iteration}'
+                name=f'Points - Iteration {iteration}'  # Label for the scatter plot
             )
             
-            # Scatter dei centroidi
+            # Scatter plot of the centroids
             centroids = go.Scatter(
                 x=df_frame['Centroid_X'], 
                 y=df_frame['Centroid_Y'],
                 mode='markers',
                 marker=dict(
-                    symbol='x', 
-                    size=15, 
-                    color='red', 
-                    line=dict(width=2)
+                    symbol='x',  # Mark centroids with an 'x' symbol
+                    size=15,     # Size of the centroids
+                    color='red', # Centroids are marked in red
+                    line=dict(width=2)  # Add border to centroid points
                 ),
-                name=f'Centroidi - Iterazione {iteration}'
+                name=f'Centroids - Iteration {iteration}'  # Label for the centroid plot
             )
             
-            # Aggiungi frame
+            # Create a frame for the current iteration
             frame = go.Frame(
                 data=[scatter, centroids],
-                name=f'frame{iteration}'
+                name=f'frame{iteration}'  # Name of the frame
             )
             frames.append(frame)
         
-        # Crea figura iniziale
+        # Create the initial figure with a subplot
         fig = make_subplots(
             rows=1, cols=1, 
-            subplot_titles=('Evoluzione del clustering K-Means++')
+            subplot_titles=('Evolution of K-Means++ Clustering')
         )
         first_frame = frames[0]
-        fig.add_trace(first_frame.data[0])
-        fig.add_trace(first_frame.data[1])
+        fig.add_trace(first_frame.data[0])  # Add scatter plot for the first frame
+        fig.add_trace(first_frame.data[1])  # Add centroid plot for the first frame
         
-        # Configura animazione
+        # Set up animation for the frames
         fig.frames = frames
         fig.update_layout(
-            title='Evoluzione del clustering K-Means++',
-            xaxis_title='Caratteristica 1',
-            yaxis_title='Caratteristica 2',
+            title='Evolution of K-Means++ Clustering',
+            xaxis_title='Feature 1',
+            yaxis_title='Feature 2',
             height=800,
             updatemenus=[{
-                'type': 'buttons',
+                'type': 'buttons',  # Add buttons for animation control
                 'showactive': False,
                 'buttons': [
                     {
-                        'label': 'Avvia',
+                        'label': 'Play',  # Button to start animation
                         'method': 'animate',
                         'args': [None, {
-                            'frame': {'duration': 1000, 'redraw': True},
+                            'frame': {'duration': 1000, 'redraw': True},  # Set duration for each frame
                             'fromcurrent': True,
-                            'transition': {'duration': 300}
+                            'transition': {'duration': 300}  # Transition duration between frames
                         }]
                     },
                     {
-                        'label': 'Pausa',
+                        'label': 'Pause',  # Button to pause animation
                         'method': 'animate',
                         'args': [[None], {
                             'frame': {'duration': 0, 'redraw': False},
@@ -126,7 +130,7 @@ class KMeansVisualizer:
                         }]
                     },
                     {
-                        'label': 'Ripristina',
+                        'label': 'Reset',  # Button to reset animation to the first frame
                         'method': 'animate',
                         'args': [None, {
                             'frame': {'duration': 1000, 'redraw': True},
@@ -140,6 +144,3 @@ class KMeansVisualizer:
         )
         
         return fig
-
-
-

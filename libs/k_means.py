@@ -50,7 +50,7 @@ class KmeansSpark:
                 rdd_data = sc.parallelize(data)
 
             # Step 1: Random initialization of centroids
-            centroids = rdd_data.takeSample(False, self.k)
+            centroids = rdd_data.takeSample(withReplacement=False, num=self.k, seed=42)
 
             for iteration in range(self.max_iters):
                 # Mapping: Assign each point to the nearest cluster
