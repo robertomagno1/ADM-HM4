@@ -124,8 +124,8 @@ If the Notebook doesn't load through Github please try all of these steps:
 
 https://github.com/user-attachments/assets/07d52864-82f7-4c2f-9a38-ce6b83234195
 
-**Author:** Roberto Magno Mazzotta , Gabriel Pinos, Ata Berk Firat
+**Author:** Roberto Magno Mazzotta , Gabriel Pinos,  Ata Berk Firat
 
-**Email:** magnomazzotta.2200470@studenti.uniroma1.it , pinos.1965035@atudenti.uniroma1.it
+**Email:** magnomazzotta.2200470@studenti.uniroma1.it , pinos.1965035@atudenti.uniroma1.it, ataberk77178@outlook.com 
 
 *MSc. in Data Science, Sapienza University of Rome*
