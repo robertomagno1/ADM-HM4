@@ -11,6 +11,7 @@ This is a GitHub repository created to submit the fourth homework of the **Algor
 ├── MyFunctions/          # Custom functions and utilities
 ├── images/               # Directory containing images
 ├── libs/                 # Python modules for specific tasks
+        |–– LSH.py
 ├── .gitignore            # Git ignore file for excluding unnecessary files
 ├── README.md             # Project documentation
 ├── recommendation.ipynb  # Notebook for the recommendation system implementation
