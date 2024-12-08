@@ -7,19 +7,24 @@ This is a GitHub repository created to submit the fourth homework of the **Algor
 ### Files and Directories
 ```
 .
-├── Data/                 # Directory for datasets
-├── MyFunctions/          # Custom functions and utilities
-├── images/               # Directory containing images
-├── libs/                 # Python modules for specific tasks
-        |–– LSH.py
+├── libs/                 # Python modules for the function called in the main notebook
+
+        ├──  LSH.py
+        ├──  analysis_functions.py
+        ├──  functions.py
+        ├──  k_means.py
+        ├──  k_means_plus_plus.py
+        ├──  k_means_visualizer.py
+        ├──  locality_sensitive_hashing.py
+        ├──  lsh_functions.py
+        ├──  minhash_functions.py
+        ├──  minhash_similarity.py
+        
 ├── .gitignore            # Git ignore file for excluding unnecessary files
 ├── README.md             # Project documentation
-├── recommendation.ipynb  # Notebook for the recommendation system implementation
-├── clustering.ipynb      # Notebook for clustering analysis and implementation
-├── algorithm.ipynb       # Notebook for the algorithmic problem
-├── commandline.sh        # Bash script for Command Line Question
-├── LICENSE               # MIT license for the repository
+├── algorithm4.ipynb       # Notebook for the algorithmic problem
 └── main.ipynb            # Main notebook combining all tasks
+
 ```
 --- 
 
@@ -30,23 +35,29 @@ This is a GitHub repository created to submit the fourth homework of the **Algor
 
 3. ``libs/``: A folder including 4 Python modules used to solve the exercises in `main.ipynb`. The files included are:
 
-    - `__init__.py`: A *init* file that allows us to import the modules into our Jupyter Notebook.
+    - `analysis_functions.py`: A Python file including a `DataHandler` class designed to handle data cleaning and feature engineering on Kaggle's [MovieLens 20M Dataset](https://www.kaggle.com/datasets/grouplens/movielens-20m-dataset?select=rating.csv).
+      
+    - `lsh_functions.py`: A Python file including a `LSH` class designed to build a Recommendation Engine with LSH using user data obtained from Kaggle's [MovieLens 20M Dataset](https://www.kaggle.com/datasets/grouplens/movielens-20m-dataset?select=rating.csv).
+  
+      
+    - `locality_sensitive_hashing.py` : Here there is functions that  recommend movies for a target user based on similar users 
 
-    - `analysis`: A Python file including a `DataHandler` class designed to handle data cleaning and feature engineering on Kaggle's [MovieLens 20M Dataset](https://www.kaggle.com/datasets/grouplens/movielens-20m-dataset?select=rating.csv).
+    - `k_means.py`: A Python file including class `KMeans` designed to perform Factor Analysis of Mixed Data on Kaggle's [MovieLens 20M Dataset](https://www.kaggle.com/datasets/grouplens/movielens-20m-dataset?select=rating.csv) and then perform parallelized k-Means andusing PySpark.
+      
+    - `k_means_plus_plus.py`:  Implementation of k-Means++ clustering.
+  
+    - `k_means_visualizer.py`: function to visualize the k_means iterations and metrics associated.
+  
+    -  `minhash_functions.py` : this function create buckets , signatures and charateristic matrix for minhash
+      
+    - ` minhash_similarity.py` : this compute minhash similarity and return top hash bucket 
 
-    - `recommender.py`: A Python file including a `Recommender` class designed to build a Recommendation Engine with LSH using user data obtained from Kaggle's [MovieLens 20M Dataset](https://www.kaggle.com/datasets/grouplens/movielens-20m-dataset?select=rating.csv).
 
-    - `cluster.py`: A Python file including three classes: `FAMD`, `KMeans`, and `KMeans++` designed to perform Factor Analysis of Mixed Data on Kaggle's [MovieLens 20M Dataset](https://www.kaggle.com/datasets/grouplens/movielens-20m-dataset?select=rating.csv) and then perform parallelized k-Means and k-Means++ clustering using PySpark.
 
-    - `plotter.py`: A Python file including a `Plotter` class designed to build auxiliary plots for the written report on `main.ipynb`.
+4. `.algorithm4.ipynb ` : here there is the notebook for the algorithmic problem (exercise 4)
+   
+6. `.gitignore`: A predetermined `.gitignore` file that tells Git which files or folders to ignore in a Python project.
 
-4. `commandline.sh`: A bash script including the code to solve the *Command Line Question*.
-
-5. `images/`: A folder containing a screenshot of the successful execution of the `commandline.sh` script.
-
-6. ``.gitignore``: A predetermined `.gitignore` file that tells Git which files or folders to ignore in a Python project.
-
-7. `LICENSE`: A file containing an MIT permissive license.
 
 ---
 
