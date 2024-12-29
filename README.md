@@ -25,7 +25,6 @@ This is a GitHub repository created to submit the fifth homework of the Algorith
 ├── merged1and2.ipynb      # Merged notebook for exercises 1 and 2
 └── usa-airport-dataset.zip # Compressed dataset of USA flight data
 
-
 # Project Overview
 
 This project analyzes the flight network of U.S. airports and focuses on various analytical tasks. It includes the following components:
